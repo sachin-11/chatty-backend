@@ -6,11 +6,12 @@ import { config } from '@root/config';
 import Logger from 'bunyan';
 import { IAuthJob } from '@auth/interfaces/auth.interface';
 import { IEmailJob, IUserJob } from '@user/interfaces/user.interface';
+import { IPostJobData } from '@post/interfaces/post.interface';
 
 type IBaseJobData =
   | IAuthJob
   | IEmailJob
-  // | IPostJobData
+  | IPostJobData
   // | IReactionJob
   // | ICommentJob
   // | IFollowerJobData
