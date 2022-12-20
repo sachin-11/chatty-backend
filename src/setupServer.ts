@@ -14,6 +14,7 @@ import { createAdapter } from '@socket.io/redis-adapter';
 import { config } from '@root/config';
 import applicationRoutes from '@root/routes';
 import { CustomError, IErrorResponse } from '@global/helpers/error-handler';
+import { SocketIOPostHandler } from '@socket/post';
 
 const SERVER_PORT = 5000;
 const log: Logger = config.createLogger('server');
@@ -81,7 +82,7 @@ export class ChattyServer {
       const httpServer: http.Server = new http.Server(app);
       const socketIO: Server = await this.createSocketIO(httpServer);
       this.startHttpServer(httpServer);
-      // this.socketIOConnections(socketIO);
+      this.socketIOConnections(socketIO);
     } catch (error) {
       log.error(error);
     }
@@ -108,5 +109,19 @@ export class ChattyServer {
     });
   }
 
-  // private socketIOConnections(io: Server): void {}
+  private socketIOConnections(io: Server): void {
+    const postSocketHandler: SocketIOPostHandler = new SocketIOPostHandler(io);
+    // const followerSocketHandler: SocketIOFollowerHandler = new SocketIOFollowerHandler(io);
+    // const userSocketHandler: SocketIOUserHandler = new SocketIOUserHandler(io);
+    // const chatSocketHandler: SocketIOChatHandler = new SocketIOChatHandler(io);
+    // const notificationSocketHandler: SocketIONotificationHandler = new SocketIONotificationHandler();
+    // const imageSocketHandler: SocketIOImageHandler = new SocketIOImageHandler();
+
+    postSocketHandler.listen();
+    // followerSocketHandler.listen();
+    // userSocketHandler.listen();
+    // chatSocketHandler.listen();
+    // notificationSocketHandler.listen(io);
+    // imageSocketHandler.listen(io);
+  }
 }
