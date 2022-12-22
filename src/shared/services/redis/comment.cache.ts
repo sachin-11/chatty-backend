@@ -24,7 +24,7 @@ export class CommentCache extends BaseCache {
       let count: number = Helpers.parseJson(commentCount[0]) as number;
       count += 1;
 
-      const dataToSave: string[] = ['commentCount', `${count}`];
+      const dataToSave: string[] = ['commentsCount', `${count}`];
 
       await this.client.HSET(`posts:${postId}`, dataToSave);
     } catch (error) {

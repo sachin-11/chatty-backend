@@ -15,7 +15,7 @@ class CommentService {
     const comments: Promise<ICommentDocument> = CommentsModel.create(comment);
     const post: Query<IPostDocument, IPostDocument> = PostModel.findOneAndUpdate(
       { _id: postId },
-      { $inc: { commentCount: 1 } },
+      { $inc: { commentsCount: 1 } },
       { new: true }
     ) as Query<IPostDocument, IPostDocument>;
     const user: Promise<IUserDocument> = userCache.getUserFromCache(userTo) as Promise<IUserDocument>;

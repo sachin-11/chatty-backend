@@ -8,7 +8,7 @@ class CommentQueue extends BaseQueue {
     this.processJob('addCommentToDB', 5, commentWorker.addCommentToDB);
   }
 
-  public addEmailJob(name: string, data: ICommentJob): void {
+  public addCommentJob(name: string, data: ICommentJob): void {
     this.addJob(name, data);
   }
 }
